@@ -13,10 +13,8 @@ import cn.bmob.imdemo.R;
 import cn.bmob.imdemo.bean.User;
 import cn.bmob.v3.BmobUser;
 
-/**封装了导航条的类均需继承该类
- * @author :smile
- * @project:ParentWithNaviActivity
- * @date :2015-08-18-11:29
+/**
+ * 封装了导航条的类均需继承该类
  */
 public abstract class ParentWithNaviActivity extends BaseActivity {
 

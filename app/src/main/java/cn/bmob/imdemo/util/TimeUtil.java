@@ -77,7 +77,7 @@ public class TimeUtil {
      * 获取当前时间 yyyy-MM-dd HH:mm:ss
      * @return
      */
-    public String getCurrTime(long time){
+    public static String getCurrTime(long time){
         SimpleDateFormat format = new SimpleDateFormat(FORMAT_DATE_TIME_SECOND);
         return format.format(new Date(time));
     }

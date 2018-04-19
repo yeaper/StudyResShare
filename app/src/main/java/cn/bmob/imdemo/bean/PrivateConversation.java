@@ -17,7 +17,6 @@ import cn.bmob.newim.bean.BmobIMMessageType;
 
 /**
  * 私聊会话
- * Created by Administrator on 2016/5/25.
  */
 public class PrivateConversation extends Conversation{
 

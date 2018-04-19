@@ -13,10 +13,8 @@ import com.orhanobut.logger.Logger;
 
 import cn.bmob.imdemo.Config;
 
-/**基类
- * @author :smile
- * @project:BaseActivity
- * @date :2016-01-15-18:23
+/**
+ * 基类
  */
 public class BaseFragment extends Fragment {
 

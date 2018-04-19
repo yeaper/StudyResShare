@@ -14,9 +14,6 @@ import cn.bmob.newim.bean.BmobIMMessage;
 /**
  * 添加好友请求
  *
- * @author :smile
- * @project:AddFriendMessage
- * @date :2016-01-30-17:28
  */
 //TODO 自定义消息：7.2、自定义消息类型，用于发送添加好友请求
 //TODO 好友管理：9.5、自定义添加好友的消息类型

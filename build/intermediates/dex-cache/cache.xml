@@ -84,6 +84,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="D:\develop_soft\AndroidSDK\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="D:\workspace_android\StudyResShare\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_04c8bc8c607f25079d752526189ac6b220d02efc.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\yeape\.android\build-cache\c63ac087ddc87d8bede332dd35df1212b3798863\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -162,6 +171,24 @@
         revision="25.0.3"
         sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
         <dex dex="D:\workspace_android\StudyResShare\app\build\intermediates\pre-dexed\debug\butterknife-7.0.1_972aa8dd59b427d015454dd5d92b668b579bb7fb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yeape\.android\build-cache\b109a74cf40e4132865c3cc915c54e1f23a710ec\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="f970a1cef1b784a88edbb034e4e5fbd6bc0cdce9">
+        <dex dex="D:\workspace_android\StudyResShare\app\build\intermediates\pre-dexed\debug\classes_8110125b4fc28878ad467fc6cf4c267f3712475f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yeape\.android\build-cache\9ce676fef1ee902d7d15089699a16b3d3b8557ec\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="D:\workspace_android\StudyResShare\app\build\intermediates\pre-dexed\debug\classes_62a28284fd2093a5e939d39e44169bdf4e1675f7.jar" />
     </item>
     <item
         is-multidex="false"

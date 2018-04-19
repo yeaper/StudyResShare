@@ -41,11 +41,7 @@ import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
 
 /**
- * 联系人界面
  *
- * @author :smile
- * @project:ContactFragment
- * @date :2016-04-27-14:23
  */
 public class ContactFragment extends ParentWithNaviFragment {
 
@@ -58,7 +54,7 @@ public class ContactFragment extends ParentWithNaviFragment {
 
     @Override
     protected String title() {
-        return "联系人";
+        return "关注的人";
     }
 
     @Override

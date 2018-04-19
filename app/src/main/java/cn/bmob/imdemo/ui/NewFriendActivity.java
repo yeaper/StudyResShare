@@ -18,10 +18,8 @@ import cn.bmob.imdemo.base.ParentWithNaviActivity;
 import cn.bmob.imdemo.db.NewFriend;
 import cn.bmob.imdemo.db.NewFriendManager;
 
-/**新朋友
- * @author :smile
- * @project:NewFriendActivity
- * @date :2016-01-25-18:23
+/**
+ * 新朋友
  */
 public class NewFriendActivity extends ParentWithNaviActivity {
 

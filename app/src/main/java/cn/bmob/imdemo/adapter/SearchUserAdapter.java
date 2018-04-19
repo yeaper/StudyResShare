@@ -10,9 +10,7 @@ import cn.bmob.imdemo.adapter.base.BaseViewHolder;
 import cn.bmob.imdemo.bean.User;
 
 /**
- * @author :smile
- * @project:SearchUserAdapter
- * @date :2016-01-22-14:18
+ *
  */
 public class SearchUserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 

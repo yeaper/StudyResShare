@@ -8,8 +8,6 @@ import cn.bmob.newim.bean.BmobIMConversationType;
 
 /**
  * 对BmobIMConversation的抽象封装,方便开发者扩展会话类型
- * @author smile
- * @date 2016-05-25
  */
 public abstract class Conversation implements Serializable,Comparable{
 

@@ -2,10 +2,8 @@ package cn.bmob.imdemo.bean;
 
 import cn.bmob.v3.BmobObject;
 
-/**好友表
- * @author smile
- * @project Friend
- * @date 2016-04-26
+/**
+ * 好友表
  */
 //TODO 好友管理：9.1、创建好友表
 public class Friend extends BmobObject{

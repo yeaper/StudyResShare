@@ -3,9 +3,7 @@ package cn.bmob.imdemo.event;
 import cn.bmob.newim.bean.BmobIMUserInfo;
 
 /**
- * @author :smile
- * @project:ChatEvent
- * @date :2016-01-25-10:42
+ * 聊天事件
  */
 public class ChatEvent {
 
