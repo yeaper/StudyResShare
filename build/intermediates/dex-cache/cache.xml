@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="D:\develop_soft\AndroidSDK\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="D:\workspace_android\StudyResShare\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.0_9ec53d6e4bf65b80bbc62fe47599bb7b90ba7e31.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yeape\.gradle\caches\modules-2\files-2.1\org.greenrobot\eventbus\3.0.0\ddd99896e9569eaababbe81b35d80e1b91c4ad85\eventbus-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ddd99896e9569eaababbe81b35d80e1b91c4ad85">
+        <dex dex="D:\workspace_android\StudyResShare\app\build\intermediates\pre-dexed\debug\eventbus-3.0.0_fae9943d720fd6db5d02bc466da1f9f09e9cdf54.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yeape\.android\build-cache\9c629464807f2230fa1608a821f85f7895e1ed9f\output\jars\libs\androidasync-2.1.6.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e467ee6149cd47eff052f22b1db011048726adc9">
+        <dex dex="D:\workspace_android\StudyResShare\app\build\intermediates\pre-dexed\debug\androidasync-2.1.6_5f9558965a8a674db47b4163e896c1021378e9ae.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yeape\.android\build-cache\a0ba22b485c244992feab863b436ff9c90f38774\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4e5731833bb233b850b7403f59e83bc086e1dea4">
+        <dex dex="D:\workspace_android\StudyResShare\app\build\intermediates\pre-dexed\debug\classes_fc51aa28796949f787a401cdfbb170b4bd06fe7e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yeape\.android\build-cache\9c629464807f2230fa1608a821f85f7895e1ed9f\output\jars\libs\BmobNewIM_2.1.0_20180306.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c18ec9a5b24551489c8f4eaa1339640c968d06da">
+        <dex dex="D:\workspace_android\StudyResShare\app\build\intermediates\pre-dexed\debug\BmobNewIM_2.1.0_20180306_b433e17bf7e8f864c0a63ca0fc28e7e8ca2a50cd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yeape\.android\build-cache\5bf79369ad538019a05e10d393784b4335083353\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="D:\workspace_android\StudyResShare\app\build\intermediates\pre-dexed\debug\classes_a62f768f4a2f65c49c8cb78472fa92a05a68fbde.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yeape\.android\build-cache\7e99d064495227dd54c1e5eb8705ad5d62308679\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="109f0ec452925b46b500e8d28ee2cd2d1a0145a9">
+        <dex dex="D:\workspace_android\StudyResShare\app\build\intermediates\pre-dexed\debug\classes_1dd6a343b060f88ff2c58d706a082b5f5cfe4b1a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yeape\.android\build-cache\5bf79369ad538019a05e10d393784b4335083353\output\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="D:\workspace_android\StudyResShare\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0_8d10fd165682581aa4b6893cefb5cf3a57e8f6a4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yeape\.android\build-cache\a0ba22b485c244992feab863b436ff9c90f38774\output\jars\libs\BmobSDK_3.5.6_20170705.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d0363e82e75b03f2784bd21add516fd8c1fa03bc">
+        <dex dex="D:\workspace_android\StudyResShare\app\build\intermediates\pre-dexed\debug\BmobSDK_3.5.6_20170705_c19ed75067e2bba98b8567eba649f44e8e0ce74d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yeape\.android\build-cache\a0ba22b485c244992feab863b436ff9c90f38774\output\jars\libs\okio-1.12.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c65ee0a604ff98ecaed12b7dccad20fd959026a3">
+        <dex dex="D:\workspace_android\StudyResShare\app\build\intermediates\pre-dexed\debug\okio-1.12.0_f02f209c91ec19dfe5d696df16dc756b182eb779.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yeape\.android\build-cache\a0ba22b485c244992feab863b436ff9c90f38774\output\jars\libs\rxandroid-1.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="84127ad71f76445b8215afceb38e8b05f58eafa6">
+        <dex dex="D:\workspace_android\StudyResShare\app\build\intermediates\pre-dexed\debug\rxandroid-1.2.0_07f133d03eb8152f9acee3828934b63e3b634bb6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\workspace_android\StudyResShare\app\libs\universal-image-loader-1.9.5.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="442dbfb517b9ab5cb5c6da7ebf8cc28ec5bd0375">
+        <dex dex="D:\workspace_android\StudyResShare\app\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.5_4105212167efda10f1027b72793c45ad4e985f40.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yeape\.android\build-cache\698d5544050f3636026e1bf67bfc01edcbcf90e7\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5b37cf49773f7f17aca9830efd3053b0cac56728">
+        <dex dex="D:\workspace_android\StudyResShare\app\build\intermediates\pre-dexed\debug\classes_596c3b0119253b20d62440c45f87125e79d2b040.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yeape\.gradle\caches\modules-2\files-2.1\com.github.promeg\tinypinyin\1.0.0\a48301534bbc8eea481f61fa8fbdee80eca49d15\tinypinyin-1.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a48301534bbc8eea481f61fa8fbdee80eca49d15">
+        <dex dex="D:\workspace_android\StudyResShare\app\build\intermediates\pre-dexed\debug\tinypinyin-1.0.0_f08ad9bfebe1467f4218dc24c42184b767cb109d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yeape\.android\build-cache\a0ba22b485c244992feab863b436ff9c90f38774\output\jars\libs\rxjava-1.1.6.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="79f0c1e382e8b62e91064ef6b71130dda83f338e">
+        <dex dex="D:\workspace_android\StudyResShare\app\build\intermediates\pre-dexed\debug\rxjava-1.1.6_20e948bab75a46a6db23b20dcd44dcc1bcb4c1cd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yeape\.android\build-cache\9c629464807f2230fa1608a821f85f7895e1ed9f\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="00c6113f7f51bcf5515bfe3d9bc9c795ae7373be">
+        <dex dex="D:\workspace_android\StudyResShare\app\build\intermediates\pre-dexed\debug\classes_0f4e51bdbfd25e1e21e4caf2f0b3f847288ca515.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yeape\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife\7.0.1\d5d13ea991eab0252e3710e5df3d6a9d4b21d461\butterknife-7.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
+        <dex dex="D:\workspace_android\StudyResShare\app\build\intermediates\pre-dexed\debug\butterknife-7.0.1_972aa8dd59b427d015454dd5d92b668b579bb7fb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yeape\.android\build-cache\1c0db6edf95767d0977b1958e2d8fba6d9097c22\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="D:\workspace_android\StudyResShare\app\build\intermediates\pre-dexed\debug\classes_58baa52c76c9ab1d6a4d70812e440f485daeed9c.jar" />
+    </item>
+
+</items>
