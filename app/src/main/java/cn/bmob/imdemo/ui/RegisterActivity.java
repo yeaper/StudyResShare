@@ -20,9 +20,6 @@ import cn.bmob.v3.listener.LogInListener;
 /**
  * 注册界面
  *
- * @author :smile
- * @project:RegisterActivity
- * @date :2016-01-15-18:23
  */
 public class RegisterActivity extends ParentWithNaviActivity {
 

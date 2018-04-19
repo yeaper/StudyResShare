@@ -21,10 +21,10 @@ public class BaseApplication extends Application {
     }
 
     private void setInstance(BaseApplication app) {
-        setBmobIMApplication(app);
+        setApplication(app);
     }
 
-    private static void setBmobIMApplication(BaseApplication a) {
+    private static void setApplication(BaseApplication a) {
         BaseApplication.INSTANCE = a;
     }
 
@@ -37,7 +37,7 @@ public class BaseApplication extends Application {
             BmobIM.init(this);
             BmobIM.registerDefaultMessageHandler(new DemoMessageHandler(this));
         }
-        Logger.init("BmobNewIMDemo");
+        Logger.init("Demo");
         UniversalImageLoader.initImageLoader(this);
     }
 

@@ -6,9 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * @author :smile
- * @project:TimeUtil
- * @date :2016-01-26-17:27
+ * 时间工具
  */
 public class TimeUtil {
 
@@ -72,6 +70,15 @@ public class TimeUtil {
 
     public static String getHourAndMin(long time) {
         SimpleDateFormat format = new SimpleDateFormat(FORMAT_TIME);
+        return format.format(new Date(time));
+    }
+
+    /**
+     * 获取当前时间 yyyy-MM-dd HH:mm:ss
+     * @return
+     */
+    public String getCurrTime(long time){
+        SimpleDateFormat format = new SimpleDateFormat(FORMAT_DATE_TIME_SECOND);
         return format.format(new Date(time));
     }
 

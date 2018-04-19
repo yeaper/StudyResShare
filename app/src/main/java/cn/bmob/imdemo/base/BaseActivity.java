@@ -134,8 +134,8 @@ public class BaseActivity extends FragmentActivity {
         }
     }
 
-    public void showToast(Context context, String msg){
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+    public void showToast(String msg){
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
 }

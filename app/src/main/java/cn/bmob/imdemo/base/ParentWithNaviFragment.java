@@ -1,5 +1,6 @@
 package cn.bmob.imdemo.base;
 
+import android.app.Activity;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,10 +10,8 @@ import android.widget.TextView;
 import cn.bmob.imdemo.R;
 import cn.bmob.imdemo.base.ParentWithNaviActivity.ToolBarListener;
 
-/**封装了导航条的Fragment类均需继承该类
- * @author :smile
- * @project:ParentWithNaviFragment
- * @date :2015-08-18-14:19
+/**
+ * 封装了导航条的Fragment类均需继承该类
  */
 public abstract class ParentWithNaviFragment extends BaseFragment {
 

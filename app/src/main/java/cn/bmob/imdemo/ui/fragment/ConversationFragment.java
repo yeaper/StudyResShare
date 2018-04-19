@@ -36,10 +36,8 @@ import cn.bmob.newim.bean.BmobIMConversation;
 import cn.bmob.newim.event.MessageEvent;
 import cn.bmob.newim.event.OfflineMessageEvent;
 
-/**会话界面
- * @author :smile
- * @project:ConversationFragment
- * @date :2016-01-25-18:23
+/**
+ * 消息界面
  */
 public class ConversationFragment extends ParentWithNaviFragment {
 
@@ -52,7 +50,7 @@ public class ConversationFragment extends ParentWithNaviFragment {
 
     @Override
     protected String title() {
-        return "会话";
+        return "消息";
     }
 
     @Override
