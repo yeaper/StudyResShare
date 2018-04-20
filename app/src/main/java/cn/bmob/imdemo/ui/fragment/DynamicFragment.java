@@ -40,6 +40,7 @@ import cn.bmob.imdemo.model.DynamicComment;
 import cn.bmob.imdemo.model.ResFile;
 import cn.bmob.imdemo.model.UserModel;
 import cn.bmob.imdemo.model.i.OnDynamicCommentListener;
+import cn.bmob.imdemo.model.i.OnDynamicDeleteListener;
 import cn.bmob.imdemo.ui.LoginActivity;
 import cn.bmob.imdemo.ui.MainActivity;
 import cn.bmob.imdemo.ui.PublishDynamicActivity;
@@ -100,6 +101,7 @@ public class DynamicFragment extends ParentWithNaviFragment implements OnDynamic
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         adapter = new DynamicAdapter();
         adapter.setOnDynamicCommentListener(this);
+        adapter.setDelete(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -231,6 +233,5 @@ public class DynamicFragment extends ParentWithNaviFragment implements OnDynamic
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
-
 
 }

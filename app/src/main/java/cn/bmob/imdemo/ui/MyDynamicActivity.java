@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.EditText;
 
 import java.util.ArrayList;
@@ -23,13 +24,15 @@ import cn.bmob.imdemo.model.CampusDynamic;
 import cn.bmob.imdemo.model.DynamicComment;
 import cn.bmob.imdemo.model.UserModel;
 import cn.bmob.imdemo.model.i.OnDynamicCommentListener;
+import cn.bmob.imdemo.model.i.OnDynamicDeleteListener;
 import cn.bmob.imdemo.util.TimeUtil;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
 
-public class MyDynamicActivity extends ParentWithNaviActivity implements OnDynamicCommentListener {
+public class MyDynamicActivity extends ParentWithNaviActivity implements OnDynamicCommentListener
+        , OnDynamicDeleteListener {
 
     @Bind(R.id.sw_refresh)
     SwipeRefreshLayout refreshLayout;
@@ -51,7 +54,9 @@ public class MyDynamicActivity extends ParentWithNaviActivity implements OnDynam
         initNaviView();
 
         adapter = new DynamicAdapter();
+        adapter.setDelete(true);
         adapter.setOnDynamicCommentListener(this);
+        adapter.setOnDynamicDeleteListener(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -141,5 +146,39 @@ public class MyDynamicActivity extends ParentWithNaviActivity implements OnDynam
             }
 
         });
+    }
+
+    /**
+     * 删除个人动态
+     * @param dynamicId
+     */
+    @Override
+    public void delete(final String dynamicId) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this).setTitle("是否删除该动态")
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        CampusDynamic dynamic = new CampusDynamic();
+                        dynamic.setObjectId(dynamicId);
+                        dynamic.delete(new UpdateListener() {
+
+                            @Override
+                            public void done(BmobException e) {
+                                if(e==null){
+                                    getDynamic();
+                                }else{
+                                    showToast("删除失败："+e.getMessage());
+                                }
+                            }
+                        });
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        builder.create().show();
+
     }
 }

@@ -47,6 +47,16 @@
             android:layout_below="@+id/dynamic_name"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="15dp"/>
+
+        <ImageView
+            android:id="@+id/dynamic_delete"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/delete"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone"/>
     </RelativeLayout>
 
     <TextView

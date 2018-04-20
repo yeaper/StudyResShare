@@ -24,6 +24,7 @@ import cn.bmob.imdemo.model.UserModel;
 import cn.bmob.imdemo.model.global.C;
 import cn.bmob.imdemo.model.i.DownloadResFileListener;
 import cn.bmob.imdemo.model.i.OnDynamicCommentListener;
+import cn.bmob.imdemo.model.i.OnDynamicDeleteListener;
 import cn.bmob.imdemo.ui.ChatActivity;
 import cn.bmob.imdemo.ui.CommentActivity;
 import cn.bmob.imdemo.util.FileUtil;
@@ -41,6 +42,7 @@ import cn.bmob.v3.listener.DownloadFileListener;
 public class DynamicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private List<CampusDynamic> dataList = new ArrayList<>();
+    private boolean isShowDelete = false;
 
     public void setDatas(List<CampusDynamic> list) {
         dataList.clear();
@@ -55,8 +57,8 @@ public class DynamicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         notifyDataSetChanged();
     }
 
-    public List<CampusDynamic> getDataList(){
-        return dataList;
+    public void setDelete(boolean isShowDelete){
+        this.isShowDelete = isShowDelete;
     }
 
     @Override
@@ -78,6 +80,8 @@ public class DynamicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         @Bind(R.id.dynamic_avatar)
         ImageView avatar;
+        @Bind(R.id.dynamic_delete)
+        ImageView delete;
         @Bind(R.id.dynamic_name)
         TextView name;
         @Bind(R.id.dynamic_time)
@@ -99,6 +103,19 @@ public class DynamicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         @Override
         public void bindData(final CampusDynamic dynamic) {
+            if(isShowDelete){
+                delete.setVisibility(View.VISIBLE);
+                delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(onDynamicDeleteListener != null){
+                            onDynamicDeleteListener.delete(dynamic.getObjectId());
+                        }
+                    }
+                });
+            }else{
+                delete.setVisibility(View.GONE);
+            }
             name.setText(dynamic.getAuthorName());
             time.setText(dynamic.getCreatedAt());
             content.setText(dynamic.getContent());
@@ -165,5 +182,11 @@ public class DynamicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public void setOnDynamicCommentListener(OnDynamicCommentListener onDynamicCommentListener) {
         this.onDynamicCommentListener = onDynamicCommentListener;
+    }
+
+    private OnDynamicDeleteListener onDynamicDeleteListener;
+
+    public void setOnDynamicDeleteListener(OnDynamicDeleteListener onDynamicDeleteListener) {
+        this.onDynamicDeleteListener = onDynamicDeleteListener;
     }
 }
