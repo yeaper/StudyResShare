@@ -1,5 +1,6 @@
 package cn.bmob.imdemo.ui.fragment;
 
+import android.app.ActivityManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.bmob.imdemo.BaseApplication;
 import cn.bmob.imdemo.R;
 import cn.bmob.imdemo.base.ParentWithNaviFragment;
 import cn.bmob.imdemo.bean.User;
@@ -79,6 +81,7 @@ public class PersonalFragment extends ParentWithNaviFragment {
         UserModel.getInstance().logout();
         //TODO 连接：3.2、退出登录需要断开与IM服务器的连接
         BmobIM.getInstance().disConnect();
+        BaseApplication.clearActivity();
         getActivity().finish();
         startActivity(LoginActivity.class, null);
     }

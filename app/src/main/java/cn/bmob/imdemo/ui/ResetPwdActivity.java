@@ -1,6 +1,6 @@
 package cn.bmob.imdemo.ui;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.ActivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -8,6 +8,7 @@ import android.widget.EditText;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.bmob.imdemo.BaseApplication;
 import cn.bmob.imdemo.R;
 import cn.bmob.imdemo.base.ParentWithNaviActivity;
 import cn.bmob.imdemo.model.UserModel;
@@ -44,6 +45,7 @@ public class ResetPwdActivity extends ParentWithNaviActivity {
                         UserModel.getInstance().logout();
                         //退出登录需要断开与IM服务器的连接
                         BmobIM.getInstance().disConnect();
+                        BaseApplication.clearActivity();
                         finish();
                         startActivity(LoginActivity.class, null);
                     }

@@ -1,5 +1,6 @@
 package cn.bmob.imdemo;
 
+import android.app.Activity;
 import android.app.Application;
 
 import com.orhanobut.logger.Logger;
@@ -7,6 +8,8 @@ import com.orhanobut.logger.Logger;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import cn.bmob.imdemo.base.UniversalImageLoader;
 import cn.bmob.newim.BmobIM;
@@ -26,6 +29,21 @@ public class BaseApplication extends Application {
 
     private static void setApplication(BaseApplication a) {
         BaseApplication.INSTANCE = a;
+    }
+
+    private static List<Activity> lists = new ArrayList<>();
+
+    public static void addActivity(Activity activity) {
+        lists.add(activity);
+    }
+
+    public static void clearActivity() {
+        if (lists != null) {
+            for (Activity activity : lists) {
+                activity.finish();
+            }
+            lists.clear();
+        }
     }
 
     @Override

@@ -1,6 +1,7 @@
 package cn.bmob.imdemo.base;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.ButterKnife;
+import cn.bmob.imdemo.BaseApplication;
 import cn.bmob.imdemo.Config;
 
 /**
@@ -42,6 +44,7 @@ public class BaseActivity extends FragmentActivity {
         super.setContentView(layoutResID);
         ButterKnife.bind(this);
         initView();
+        BaseApplication.addActivity(this);
     }
 
     @Override

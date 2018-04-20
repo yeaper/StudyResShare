@@ -91,8 +91,11 @@ public class UserModel extends BaseModel {
             listener.setError("请填写新密码");
             return;
         }
-        BmobUser.updateCurrentUserPassword(old_pwd, new_pwd, new UpdateListener() {
-
+        User user = new User();
+        user.setObjectId(UserModel.getInstance().getCurrentUser().getObjectId());
+        user.setSessionToken(UserModel.getInstance().getCurrentUser().getSessionToken());
+        user.setPassword(new_pwd);
+        user.update(new UpdateListener() {
             @Override
             public void done(BmobException e) {
                 if(e==null){
@@ -101,7 +104,6 @@ public class UserModel extends BaseModel {
                     listener.setError(e.getMessage());
                 }
             }
-
         });
     }
 

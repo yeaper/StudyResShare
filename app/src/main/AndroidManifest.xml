@@ -47,7 +47,8 @@
         <activity android:name=".ui.LoginActivity" />
         <activity
             android:name=".ui.MainActivity"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:launchMode="singleTask"/>
         <activity android:name=".ui.RegisterActivity" />
         <activity
             android:name=".ui.SearchUserActivity"
