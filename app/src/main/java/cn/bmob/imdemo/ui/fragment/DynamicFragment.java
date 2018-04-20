@@ -34,6 +34,7 @@ import cn.bmob.imdemo.adapter.SearchResFileAdapter;
 import cn.bmob.imdemo.base.ParentWithNaviFragment;
 import cn.bmob.imdemo.bean.Friend;
 import cn.bmob.imdemo.bean.User;
+import cn.bmob.imdemo.event.DeleteDynamicEvent;
 import cn.bmob.imdemo.event.PublishDynamicEvent;
 import cn.bmob.imdemo.model.CampusDynamic;
 import cn.bmob.imdemo.model.DynamicComment;
@@ -225,6 +226,11 @@ public class DynamicFragment extends ParentWithNaviFragment implements OnDynamic
 
     @Subscribe
     public void onEventMainThread(PublishDynamicEvent event){
+        getDynamic();
+    }
+
+    @Subscribe
+    public void onEventMainThread(DeleteDynamicEvent event){
         getDynamic();
     }
 

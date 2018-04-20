@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.EditText;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +22,7 @@ import cn.bmob.imdemo.adapter.DynamicAdapter;
 import cn.bmob.imdemo.base.ParentWithNaviActivity;
 import cn.bmob.imdemo.bean.Friend;
 import cn.bmob.imdemo.bean.User;
+import cn.bmob.imdemo.event.DeleteDynamicEvent;
 import cn.bmob.imdemo.model.CampusDynamic;
 import cn.bmob.imdemo.model.DynamicComment;
 import cn.bmob.imdemo.model.UserModel;
@@ -154,7 +157,7 @@ public class MyDynamicActivity extends ParentWithNaviActivity implements OnDynam
      */
     @Override
     public void delete(final String dynamicId) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this).setTitle("是否删除该动态")
+        AlertDialog.Builder builder = new AlertDialog.Builder(this).setTitle("是否删除动态")
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         CampusDynamic dynamic = new CampusDynamic();
@@ -165,6 +168,7 @@ public class MyDynamicActivity extends ParentWithNaviActivity implements OnDynam
                             public void done(BmobException e) {
                                 if(e==null){
                                     getDynamic();
+                                    EventBus.getDefault().post(new DeleteDynamicEvent());
                                 }else{
                                     showToast("删除失败："+e.getMessage());
                                 }
