@@ -9,7 +9,7 @@ import cn.bmob.imdemo.Config;
 import cn.bmob.imdemo.R;
 import cn.bmob.imdemo.db.NewFriend;
 import cn.bmob.imdemo.db.NewFriendManager;
-import cn.bmob.imdemo.ui.NewFriendActivity;
+import cn.bmob.imdemo.ui.NewFocusActivity;
 
 /**
  * 新朋友会话
@@ -33,9 +33,9 @@ public class NewFriendConversation extends Conversation{
             }
             //目前的好友请求都是别人发给我的
             if(status==null || status== Config.STATUS_VERIFY_NONE||status ==Config.STATUS_VERIFY_READED){
-                return name+"请求添加好友";
+                return name+"请求关注好友";
             }else{
-                return "我已添加"+name;
+                return "我已关注"+name;
             }
         }else{
             return "";
@@ -70,7 +70,7 @@ public class NewFriendConversation extends Conversation{
     @Override
     public void onClick(Context context) {
         Intent intent = new Intent();
-        intent.setClass(context, NewFriendActivity.class);
+        intent.setClass(context, NewFocusActivity.class);
         context.startActivity(intent);
     }
 

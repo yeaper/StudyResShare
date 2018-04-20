@@ -14,10 +14,7 @@ import cn.bmob.imdemo.bean.User;
 import cn.bmob.imdemo.db.NewFriendManager;
 
 /**联系人
- * 一种简洁的Adapter实现方式，可用于多种Item布局的recycleView实现，不用再写ViewHolder啦
- * @author :smile
- * @project:ContactNewAdapter
- * @date :2016-04-27-14:18
+ * 一种简洁的Adapter实现方式，可用于多种Item布局的recycleView实现，不用再写ViewHolder
  */
 public class ContactAdapter extends BaseRecyclerAdapter<Friend> {
 

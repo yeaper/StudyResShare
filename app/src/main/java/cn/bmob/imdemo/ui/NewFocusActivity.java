@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -19,9 +20,9 @@ import cn.bmob.imdemo.db.NewFriend;
 import cn.bmob.imdemo.db.NewFriendManager;
 
 /**
- * 新朋友
+ * 新关注
  */
-public class NewFriendActivity extends ParentWithNaviActivity {
+public class NewFocusActivity extends ParentWithNaviActivity {
 
     @Bind(R.id.ll_root)
     LinearLayout ll_root;
@@ -34,7 +35,7 @@ public class NewFriendActivity extends ParentWithNaviActivity {
 
     @Override
     protected String title() {
-        return "新朋友";
+        return "新关注";
     }
 
     @Override
@@ -113,7 +114,7 @@ public class NewFriendActivity extends ParentWithNaviActivity {
 
             @Override
             public boolean onItemLongClick(int position) {
-                NewFriendManager.getInstance(NewFriendActivity.this).deleteNewFriend(adapter.getItem(position));
+                NewFriendManager.getInstance(NewFocusActivity.this).deleteNewFriend(adapter.getItem(position));
                 adapter.remove(position);
                 return true;
             }
@@ -136,6 +137,10 @@ public class NewFriendActivity extends ParentWithNaviActivity {
       查询本地会话
      */
     public void query(){
+        List<NewFriend> datas = new ArrayList<>();
+        for(int i=0;i<NewFriendManager.getInstance(this).getAllNewFriend().size();i++){
+
+        }
         adapter.bindDatas(NewFriendManager.getInstance(this).getAllNewFriend());
         adapter.notifyDataSetChanged();
         sw_refresh.setRefreshing(false);

@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
@@ -20,7 +21,9 @@ import cn.bmob.imdemo.R;
 import cn.bmob.imdemo.base.ImageLoaderFactory;
 import cn.bmob.imdemo.base.ParentWithNaviActivity;
 import cn.bmob.imdemo.bean.AddFriendMessage;
+import cn.bmob.imdemo.bean.Friend;
 import cn.bmob.imdemo.bean.User;
+import cn.bmob.imdemo.model.CampusDynamic;
 import cn.bmob.imdemo.model.UserModel;
 import cn.bmob.newim.BmobIM;
 import cn.bmob.newim.bean.BmobIMConversation;
@@ -31,6 +34,7 @@ import cn.bmob.newim.core.ConnectionStatus;
 import cn.bmob.newim.listener.MessageSendListener;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
 
 /**
@@ -54,6 +58,7 @@ public class UserInfoActivity extends ParentWithNaviActivity {
     User user;
     //用户信息
     BmobIMUserInfo info;
+    boolean isSendFocusRequest = false;//是否已经发送了关注请求
 
     @Override
     protected String title() {
@@ -75,8 +80,29 @@ public class UserInfoActivity extends ParentWithNaviActivity {
             btn_chat.setVisibility(View.GONE);
         } else {//用户为非登录用户
             reset_pwd.setVisibility(View.GONE);
-            btn_add_friend.setVisibility(View.VISIBLE);
             btn_chat.setVisibility(View.VISIBLE);
+
+            UserModel.getInstance().queryFriends(
+                    new FindListener<Friend>() {
+                        @Override
+                        public void done(List<Friend> friends, BmobException e) {
+                            if (e == null) {
+                                int count = 0;
+                                for(Friend friend: friends){//好友不显示关注按钮
+                                    if(user.getObjectId().equals(friend.getFriendUser().getObjectId())) {
+                                        btn_add_friend.setVisibility(View.GONE);
+                                        break;
+                                    }
+                                    count++;
+                                }
+                                if(count >= friends.size()){
+                                    btn_add_friend.setVisibility(View.VISIBLE);
+                                }
+                            }else{
+                                btn_add_friend.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    });
         }
         //构造聊天方的用户信息:传入用户id、用户名和用户头像三个参数
         info = new BmobIMUserInfo(user.getObjectId(), user.getUsername(), user.getAvatar());
@@ -97,7 +123,7 @@ public class UserInfoActivity extends ParentWithNaviActivity {
                 startActivity(ResetPwdActivity.class, null, false);
                 break;
             case R.id.btn_add_friend:
-                sendAddFriendMessage();
+                if(!isSendFocusRequest) sendAddFriendMessage();
                 break;
             case R.id.btn_chat:
                 chat();
@@ -141,7 +167,7 @@ public class UserInfoActivity extends ParentWithNaviActivity {
     }
 
     /**
-     * 发送添加好友的请求
+     * 发送关注好友的请求
      */
     //TODO 好友管理：9.7、发送添加好友请求
     private void sendAddFriendMessage() {
@@ -149,13 +175,13 @@ public class UserInfoActivity extends ParentWithNaviActivity {
             toast("尚未连接IM服务器");
             return;
         }
-        //TODO 会话：4.1、创建一个暂态会话入口，发送好友请求
+        //TODO 会话：4.1、创建一个暂态会话入口，发送请求
         BmobIMConversation conversationEntrance = BmobIM.getInstance().startPrivateConversation(info, true, null);
-        //TODO 消息：5.1、根据会话入口获取消息管理，发送好友请求
+        //TODO 消息：5.1、根据会话入口获取消息管理，发送请求
         BmobIMConversation messageManager = BmobIMConversation.obtain(BmobIMClient.getInstance(), conversationEntrance);
         AddFriendMessage msg = new AddFriendMessage();
         User currentUser = BmobUser.getCurrentUser(User.class);
-        msg.setContent("很高兴认识你，可以加个好友吗?");//给对方的一个留言信息
+        msg.setContent("很高兴认识你，可以关注你吗?");//给对方的一个留言信息
         Map<String, Object> map = new HashMap<>();
         map.put("name", currentUser.getUsername());//发送者姓名
         map.put("avatar", currentUser.getAvatar());//发送者的头像
@@ -165,9 +191,10 @@ public class UserInfoActivity extends ParentWithNaviActivity {
             @Override
             public void done(BmobIMMessage msg, BmobException e) {
                 if (e == null) {//发送成功
-                    toast("好友请求发送成功，等待验证");
+                    toast("关注请求发送成功，等待验证");
+                    isSendFocusRequest = true;
                 } else {//发送失败
-                    toast("发送失败:" + e.getMessage());
+                    toast("关注失败:" + e.getMessage());
                 }
             }
         });

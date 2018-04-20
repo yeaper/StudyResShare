@@ -56,6 +56,7 @@ public class RegisterActivity extends ParentWithNaviActivity {
             @Override
             public void done(Object o, BmobException e) {
                 if (e == null) {
+                    showToast("注册成功");
                     EventBus.getDefault().post(new FinishEvent());
                     startActivity(MainActivity.class, null, true);
                 } else {

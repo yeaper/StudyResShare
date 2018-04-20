@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="cn.bmob.imdemo">
 
 
@@ -52,7 +53,7 @@
             android:name=".ui.SearchUserActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ui.UserInfoActivity" />
-        <activity android:name=".ui.NewFriendActivity" />
+        <activity android:name=".ui.NewFocusActivity" />
         <activity
             android:name=".ui.ChatActivity"
             android:screenOrientation="portrait"

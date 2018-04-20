@@ -31,7 +31,7 @@ import cn.bmob.imdemo.bean.User;
 import cn.bmob.imdemo.event.RefreshEvent;
 import cn.bmob.imdemo.model.UserModel;
 import cn.bmob.imdemo.ui.ChatActivity;
-import cn.bmob.imdemo.ui.NewFriendActivity;
+import cn.bmob.imdemo.ui.NewFocusActivity;
 import cn.bmob.imdemo.ui.SearchUserActivity;
 import cn.bmob.newim.BmobIM;
 import cn.bmob.newim.bean.BmobIMConversation;
@@ -41,7 +41,7 @@ import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
 
 /**
- *
+ * 关注的人
  */
 public class ContactFragment extends ParentWithNaviFragment {
 
@@ -135,7 +135,7 @@ public class ContactFragment extends ParentWithNaviFragment {
             @Override
             public void onItemClick(int position) {
                 if (position == 0) {//跳转到新朋友页面
-                    startActivity(NewFriendActivity.class, null);
+                    startActivity(NewFocusActivity.class, null);
                 } else {
                     Friend friend = adapter.getItem(position);
                     User user = friend.getFriendUser();

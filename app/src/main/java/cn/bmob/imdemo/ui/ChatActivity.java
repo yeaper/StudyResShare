@@ -424,7 +424,7 @@ public class ChatActivity extends ParentWithNaviActivity implements MessageListH
             toast("尚未连接IM服务器");
             return;
         }
-        sendLocalImageMessage();
+        sendRemoteImageMessage();
     }
 
     @OnClick(R.id.tv_camera)
