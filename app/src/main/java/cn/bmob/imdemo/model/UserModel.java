@@ -8,6 +8,7 @@ import java.util.List;
 
 import cn.bmob.imdemo.bean.Friend;
 import cn.bmob.imdemo.bean.User;
+import cn.bmob.imdemo.model.i.IResetPwdCallback;
 import cn.bmob.imdemo.model.i.QueryUserListener;
 import cn.bmob.imdemo.model.i.UpdateCacheListener;
 import cn.bmob.newim.BmobIM;
@@ -35,7 +36,7 @@ public class UserModel extends BaseModel {
     }
 
     /**
-     * TODO 用户管理：2.1、注册
+     * TODO 用户管理：注册
      *
      * @param username
      * @param password
@@ -75,7 +76,37 @@ public class UserModel extends BaseModel {
     }
 
     /**
-     * TODO 用户管理：2.2、登录
+     * TODO 用户管理：重置密码
+     *
+     * @param old_pwd
+     * @param new_pwd
+     * @param listener
+     */
+    public void resetPwd(String old_pwd, String new_pwd, final IResetPwdCallback listener) {
+        if (TextUtils.isEmpty(old_pwd)) {
+            listener.setError("请填写原密码");
+            return;
+        }
+        if (TextUtils.isEmpty(new_pwd)) {
+            listener.setError("请填写新密码");
+            return;
+        }
+        BmobUser.updateCurrentUserPassword(old_pwd, new_pwd, new UpdateListener() {
+
+            @Override
+            public void done(BmobException e) {
+                if(e==null){
+                    listener.setSuccess();
+                }else{
+                    listener.setError(e.getMessage());
+                }
+            }
+
+        });
+    }
+
+    /**
+     * TODO 用户管理：登录
      *
      * @param username
      * @param password
@@ -106,14 +137,14 @@ public class UserModel extends BaseModel {
     }
 
     /**
-     * TODO  用户管理：2.3、退出登录
+     * TODO  用户管理：退出登录
      */
     public void logout() {
         BmobUser.logOut();
     }
 
     /**
-     * TODO 用户管理：2.4、获取当前用户
+     * TODO 用户管理：获取当前用户
      *
      * @return
      */
@@ -123,7 +154,7 @@ public class UserModel extends BaseModel {
 
 
     /**
-     * TODO 用户管理：2.5、查询用户
+     * TODO 用户管理：查询用户
      *
      * @param username
      * @param limit
@@ -158,7 +189,7 @@ public class UserModel extends BaseModel {
     }
 
     /**
-     * TODO 用户管理：2.6、查询指定用户信息
+     * TODO 用户管理：查询指定用户信息
      *
      * @param objectId
      * @param listener

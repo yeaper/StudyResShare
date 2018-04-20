@@ -24,10 +24,6 @@ public class LoginActivity extends BaseActivity {
     EditText et_username;
     @Bind(R.id.et_password)
     EditText et_password;
-    @Bind(R.id.btn_login)
-    Button btn_login;
-    @Bind(R.id.tv_register)
-    TextView tv_register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +52,6 @@ public class LoginActivity extends BaseActivity {
             }
         });
     }
-
 
     /**
      * 去注册

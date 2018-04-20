@@ -90,7 +90,8 @@
         <activity android:name=".ui.CommentActivity" />
         <activity android:name=".ui.MyDynamicActivity" />
         <activity android:name=".ui.SetActivity" />
-        <activity android:name=".ui.FeedbackActivity"></activity>
+        <activity android:name=".ui.FeedbackActivity" />
+        <activity android:name=".ui.ResetPwdActivity"></activity>
     </application>
 
 </manifest>
