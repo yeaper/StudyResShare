@@ -65,6 +65,7 @@
         android:background="@drawable/base_horizontal_line"/>
 
     <RelativeLayout
+        android:id="@+id/personal_set"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/btn_selector"

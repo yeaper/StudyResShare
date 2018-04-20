@@ -88,7 +88,9 @@
 
         <activity android:name=".ui.PublishDynamicActivity" />
         <activity android:name=".ui.CommentActivity" />
-        <activity android:name=".ui.MyDynamicActivity"></activity>
+        <activity android:name=".ui.MyDynamicActivity" />
+        <activity android:name=".ui.SetActivity" />
+        <activity android:name=".ui.FeedbackActivity"></activity>
     </application>
 
 </manifest>

@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import butterknife.Bind;
@@ -19,6 +18,7 @@ import cn.bmob.imdemo.model.UserModel;
 import cn.bmob.imdemo.ui.LoginActivity;
 import cn.bmob.imdemo.ui.MyDynamicActivity;
 import cn.bmob.imdemo.ui.UserInfoActivity;
+import cn.bmob.imdemo.ui.SetActivity;
 import cn.bmob.newim.BmobIM;
 import cn.bmob.v3.BmobUser;
 
@@ -56,7 +56,7 @@ public class PersonalFragment extends ParentWithNaviFragment {
         return rootView;
     }
 
-    @OnClick({R.id.layout_info,R.id.layout_my_dynamic})
+    @OnClick({R.id.layout_info,R.id.layout_my_dynamic,R.id.personal_set})
     public void click(View view) {
         switch (view.getId()){
             case R.id.layout_info:
@@ -66,6 +66,9 @@ public class PersonalFragment extends ParentWithNaviFragment {
                 break;
             case R.id.layout_my_dynamic:
                 startActivity(new Intent(getActivity(), MyDynamicActivity.class));
+                break;
+            case R.id.personal_set:
+                startActivity(new Intent(getActivity(), SetActivity.class));
                 break;
         }
 
