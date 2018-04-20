@@ -12,9 +12,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
 
 import com.leon.lfilepickerlibrary.LFilePicker;
@@ -26,6 +29,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnTouch;
 import cn.bmob.imdemo.R;
 import cn.bmob.imdemo.adapter.SearchResFileAdapter;
 import cn.bmob.imdemo.base.ParentWithNaviFragment;
@@ -36,6 +40,7 @@ import cn.bmob.imdemo.model.i.DownloadResFileListener;
 import cn.bmob.imdemo.model.i.UploadResFileListener;
 import cn.bmob.imdemo.util.FileUtil;
 import cn.bmob.imdemo.util.TimeUtil;
+import cn.bmob.imdemo.util.Util;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
@@ -49,8 +54,10 @@ import static android.app.Activity.RESULT_OK;
  */
 public class ResFragment extends ParentWithNaviFragment implements UploadResFileListener, DownloadResFileListener {
 
-    @Bind(R.id.et_find_name)
-    EditText et_find_name;
+    @Bind(R.id.res_root)
+    FrameLayout res_root;
+    @Bind(R.id.et_file_name)
+    EditText et_file_name;
     @Bind(R.id.fab_upload_res)
     FloatingActionButton upload_res;
     @Bind(R.id.sw_refresh)
@@ -98,9 +105,10 @@ public class ResFragment extends ParentWithNaviFragment implements UploadResFile
     public void click(View v){
         switch (v.getId()){
             case R.id.btn_search:
-                if(et_find_name.getText().toString().trim().length() > 0){
+                if(et_file_name.getText().toString().trim().length() > 0){
+                    Util.HideKeyboard(recyclerView);
                     refreshLayout.setRefreshing(true);
-                    searchFile(et_find_name.getText().toString().trim());
+                    searchFile(et_file_name.getText().toString().trim());
                 }else{
                     showToast("请输入搜索内容");
                 }
@@ -109,6 +117,17 @@ public class ResFragment extends ParentWithNaviFragment implements UploadResFile
                 showUploadType();
                 break;
         }
+    }
+
+    @OnTouch({R.id.res_root, R.id.rc_view})
+    public boolean touch(View v){
+        switch (v.getId()){
+            case R.id.res_root:
+            case R.id.rc_view:
+                Util.HideKeyboard(recyclerView);
+                break;
+        }
+        return false;
     }
 
     private static final int SELECT_FILE_CODE = 0x01;
@@ -203,12 +222,13 @@ public class ResFragment extends ParentWithNaviFragment implements UploadResFile
      * @param word
      */
     private void searchFile(final String word){
+        adapter.clear();
+        datas.clear();
         BmobQuery<ResFile> query = new BmobQuery<>();
         query.findObjects(new FindListener<ResFile>() {
             @Override
             public void done(List<ResFile> list, BmobException e) {
                 refreshLayout.setRefreshing(false);
-                datas.clear();
                 if(e == null){
                     if(list.size() > 0){
                         for (int i=0;i<list.size();i++) {
@@ -258,7 +278,7 @@ public class ResFragment extends ParentWithNaviFragment implements UploadResFile
             public void done(BmobException e) {
                 if(e == null){
                     for(int i=0;i<datas.size();i++){
-                        if(datas.get(i).getObjectId() == resFile.getObjectId()){
+                        if(datas.get(i).getObjectId().equals(resFile.getObjectId())){
                             datas.get(i).setDownloadCount(count);
                             adapter.setDatas(datas);
                             break;

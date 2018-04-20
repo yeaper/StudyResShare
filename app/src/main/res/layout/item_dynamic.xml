@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/height_message">
+
+        <ImageView
+            android:id="@+id/dynamic_avatar"
+            android:layout_width="@dimen/height_50"
+            android:layout_height="@dimen/height_50"
+            android:layout_gravity="center_vertical"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="@dimen/margin_12"
+            android:layout_marginBottom="@dimen/margin_12"
+            android:layout_marginLeft="@dimen/margin_16"
+            android:src="@mipmap/head" />
+
+        <TextView
+            android:id="@+id/dynamic_name"
+            android:layout_width="wrap_content"
+            android:layout_height="25.0dip"
+            android:layout_alignTop="@+id/dynamic_avatar"
+            android:layout_marginLeft="@dimen/margin_18"
+            android:layout_marginRight="58dp"
+            style="@style/style_text_black"
+            android:layout_toRightOf="@id/dynamic_avatar"
+            android:ellipsize="end"
+            android:gravity="left|center"
+            android:singleLine="true"
+            android:textSize="@dimen/text_size_medium" />
+
+        <TextView
+            android:id="@+id/dynamic_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/color_99"
+            tools:text="2018-05-01 14:14:35"
+            android:layout_toRightOf="@+id/dynamic_avatar"
+            android:layout_below="@+id/dynamic_name"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/dynamic_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:layout_marginLeft="@dimen/margin_16"
+        android:layout_marginRight="@dimen/margin_16"
+        android:lineSpacingMultiplier="1.2"
+        tools:text="测试内容测试内容测试内容测试内容测试内容测试内容测试内容"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_16"
+        android:layout_marginTop="10dp">
+        <ImageView
+            android:id="@+id/dynamic_comment"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:src="@drawable/comment"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dynamic_comment_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_16"
+        android:padding="5dp"
+        android:orientation="vertical"
+        android:background="@color/theme_bg_color"
+        android:visibility="gone">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/dynamic_comment_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/dynamic_more_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="@color/colorPrimary"
+            android:text="更多评论..."
+            android:layout_marginBottom="3dp"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/divide_line_color"
+        android:layout_marginTop="5dp"/>
+</LinearLayout>

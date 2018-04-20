@@ -21,6 +21,7 @@ import cn.bmob.imdemo.db.NewFriendManager;
 import cn.bmob.imdemo.event.RefreshEvent;
 import cn.bmob.imdemo.ui.fragment.ContactFragment;
 import cn.bmob.imdemo.ui.fragment.ConversationFragment;
+import cn.bmob.imdemo.ui.fragment.DynamicFragment;
 import cn.bmob.imdemo.ui.fragment.PersonalFragment;
 import cn.bmob.imdemo.ui.fragment.ResFragment;
 import cn.bmob.imdemo.util.IMMLeaks;
@@ -48,6 +49,8 @@ public class MainActivity extends BaseActivity {
     TextView btn_personal;
     @Bind(R.id.btn_contact)
     TextView btn_contact;
+    @Bind(R.id.btn_dynamic)
+    TextView btn_dynamic;
 
     @Bind(R.id.iv_conversation_tips)
     ImageView iv_conversation_tips;
@@ -57,6 +60,7 @@ public class MainActivity extends BaseActivity {
     private TextView[] mTabs;
     private ResFragment resFragment;
     private ConversationFragment conversationFragment;
+    private DynamicFragment dynamicFragment;
     private PersonalFragment personalFragment;
     ContactFragment contactFragment;
     private Fragment[] fragments;
@@ -105,11 +109,12 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initView() {
         super.initView();
-        mTabs = new TextView[4];
+        mTabs = new TextView[5];
         mTabs[0] = btn_res;
         mTabs[1] = btn_conversation;
         mTabs[2] = btn_contact;
-        mTabs[3] = btn_personal;
+        mTabs[3] = btn_dynamic;
+        mTabs[4] = btn_personal;
         mTabs[0].setSelected(true);
         initTab();
     }
@@ -119,14 +124,18 @@ public class MainActivity extends BaseActivity {
         conversationFragment = new ConversationFragment();
         personalFragment = new PersonalFragment();
         contactFragment = new ContactFragment();
-        fragments = new Fragment[]{resFragment, conversationFragment, contactFragment, personalFragment};
+        dynamicFragment = new DynamicFragment();
+        fragments = new Fragment[]{resFragment, conversationFragment, contactFragment, dynamicFragment, personalFragment};
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, resFragment)
                 .add(R.id.fragment_container, conversationFragment)
                 .add(R.id.fragment_container, contactFragment)
+                .add(R.id.fragment_container, dynamicFragment)
                 .add(R.id.fragment_container, personalFragment)
-                .hide(personalFragment).hide(contactFragment)
+                .hide(personalFragment)
+                .hide(contactFragment)
                 .hide(conversationFragment)
+                .hide(dynamicFragment)
                 .show(resFragment).commit();
     }
 
@@ -141,8 +150,11 @@ public class MainActivity extends BaseActivity {
             case R.id.btn_contact:
                 index = 2;
                 break;
-            case R.id.btn_personal:
+            case R.id.btn_dynamic:
                 index = 3;
+                break;
+            case R.id.btn_personal:
+                index = 4;
                 break;
             default:
                 break;

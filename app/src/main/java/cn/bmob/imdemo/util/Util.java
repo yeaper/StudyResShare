@@ -1,8 +1,11 @@
 package cn.bmob.imdemo.util;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -36,5 +39,27 @@ public class Util {
             return sdDir.toString();
         }
         return "";
+    }
+
+    /**
+     * 显示键盘
+     * @param context
+     * @param view
+     */
+    public static void showInputMethod(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null && !imm.isActive()) {
+            imm.showSoftInput(view, 0);
+        }
+    }
+
+    /**
+     * 隐藏虚拟键盘
+     */
+    public static void HideKeyboard(View v){
+        InputMethodManager imm = ( InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null && imm.isActive()) {
+            imm.hideSoftInputFromWindow(v.getWindowToken(),0);
+        }
     }
 }

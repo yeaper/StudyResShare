@@ -1,5 +1,6 @@
 package cn.bmob.imdemo.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import cn.bmob.imdemo.base.ParentWithNaviFragment;
 import cn.bmob.imdemo.bean.User;
 import cn.bmob.imdemo.model.UserModel;
 import cn.bmob.imdemo.ui.LoginActivity;
+import cn.bmob.imdemo.ui.MyDynamicActivity;
 import cn.bmob.imdemo.ui.UserInfoActivity;
 import cn.bmob.newim.BmobIM;
 import cn.bmob.v3.BmobUser;
@@ -27,9 +29,6 @@ public class PersonalFragment extends ParentWithNaviFragment {
 
     @Bind(R.id.tv_set_name)
     TextView tv_set_name;
-
-    @Bind(R.id.layout_info)
-    RelativeLayout layout_info;
 
     @Override
     protected String title() {
@@ -49,7 +48,7 @@ public class PersonalFragment extends ParentWithNaviFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_set, container, false);
+        rootView = inflater.inflate(R.layout.fragment_personal, container, false);
         initNaviView();
         ButterKnife.bind(this, rootView);
         String username = UserModel.getInstance().getCurrentUser().getUsername();
@@ -57,11 +56,19 @@ public class PersonalFragment extends ParentWithNaviFragment {
         return rootView;
     }
 
-    @OnClick(R.id.layout_info)
-    public void onInfoClick(View view) {
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("u", BmobUser.getCurrentUser(User.class));
-        startActivity(UserInfoActivity.class, bundle);
+    @OnClick({R.id.layout_info,R.id.layout_my_dynamic})
+    public void click(View view) {
+        switch (view.getId()){
+            case R.id.layout_info:
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("u", BmobUser.getCurrentUser(User.class));
+                startActivity(UserInfoActivity.class, bundle);
+                break;
+            case R.id.layout_my_dynamic:
+                startActivity(new Intent(getActivity(), MyDynamicActivity.class));
+                break;
+        }
+
     }
 
     @OnClick(R.id.btn_logout)

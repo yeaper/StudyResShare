@@ -31,11 +31,65 @@
             android:drawableRight="@mipmap/register_bottom_arrow" />
     </RelativeLayout>
 
-     <View
+    <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_2"
-        android:background="@drawable/base_horizontal_line" >
-    </View>
+        android:background="@drawable/base_horizontal_line"/>
+
+    <RelativeLayout
+        android:id="@+id/layout_my_dynamic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_selector"
+        android:minHeight="50dp"
+        android:padding="10dp" >
+
+        <TextView
+            style="@style/style_text_black"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="我的动态" />
+
+        <TextView
+            style="@style/style_text_black"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:drawablePadding="10dp"
+            android:drawableRight="@mipmap/register_bottom_arrow" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_2"
+        android:background="@drawable/base_horizontal_line"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_selector"
+        android:minHeight="50dp"
+        android:padding="10dp" >
+
+        <TextView
+            style="@style/style_text_black"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="设置" />
+
+        <TextView
+            style="@style/style_text_black"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:drawablePadding="10dp"
+            android:drawableRight="@mipmap/register_bottom_arrow" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_2"
+        android:background="@drawable/base_horizontal_line"/>
     
     <RelativeLayout
         android:id="@+id/layout_blacklist"

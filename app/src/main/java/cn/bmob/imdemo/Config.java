@@ -7,7 +7,7 @@ package cn.bmob.imdemo;
  */
 public class Config {
     //是否是debug模式
-    public static final boolean DEBUG = true;
+    public static final boolean DEBUG = false;
     //好友请求：未读-未添加->接收到别人发给我的好友添加请求，初始状态
     public static final int STATUS_VERIFY_NONE = 0;
     //好友请求：已读-未添加->点击查看了新朋友，则都变成已读状态

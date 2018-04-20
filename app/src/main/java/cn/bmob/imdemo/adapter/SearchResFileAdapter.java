@@ -41,6 +41,11 @@ public class SearchResFileAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
+    public void clear(){
+        files.clear();
+        notifyDataSetChanged();
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new MyHolder(parent.getContext(), parent, onRecyclerViewListener);

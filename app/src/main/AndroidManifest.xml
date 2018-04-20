@@ -5,6 +5,7 @@
 
      
 
+
     <!-- TODO 1.4、配置IM SDK需要的权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 监听网络的变化 -->
@@ -43,11 +44,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.LoginActivity" />
-        <activity android:name=".ui.MainActivity"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".ui.MainActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ui.RegisterActivity" />
-        <activity android:name=".ui.SearchUserActivity"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".ui.SearchUserActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ui.UserInfoActivity" />
         <activity android:name=".ui.NewFriendActivity" />
         <activity
@@ -57,6 +60,7 @@
 
 
          
+
 
         <!-- TODO 集成：1.5、配置IM SDK需要的广播和服务 -->
         <receiver android:name="cn.bmob.newim.core.ConnectChangeReceiver">
@@ -82,6 +86,9 @@
             android:name="Bmob_APP_KEY"
             android:value="3f84b7ea2a4bf2f97369b859099b4c2e" />
 
+        <activity android:name=".ui.PublishDynamicActivity" />
+        <activity android:name=".ui.CommentActivity" />
+        <activity android:name=".ui.MyDynamicActivity"></activity>
     </application>
 
 </manifest>
