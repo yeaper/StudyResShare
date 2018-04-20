@@ -85,8 +85,10 @@ public class SearchResFileAdapter extends RecyclerView.Adapter<RecyclerView.View
             if(resFile.getDownloadCount() <= 0){
                 file_download_count.setVisibility(View.GONE);
             }else if(resFile.getDownloadCount() < 100){
+                file_download_count.setVisibility(View.VISIBLE);
                 file_download_count.setText("已下载"+resFile.getDownloadCount()+"次");
             }else{
+                file_download_count.setVisibility(View.VISIBLE);
                 file_download_count.setText("已下载99+次");
             }
             file_type.setText(FileUtil.getResTypeName(resFile.getResType()));
