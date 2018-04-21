@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +25,7 @@ import cn.bmob.imdemo.base.ParentWithNaviActivity;
 import cn.bmob.imdemo.bean.AddFriendMessage;
 import cn.bmob.imdemo.bean.Friend;
 import cn.bmob.imdemo.bean.User;
-import cn.bmob.imdemo.model.CampusDynamic;
+import cn.bmob.imdemo.event.RetUsernameEvent;
 import cn.bmob.imdemo.model.UserModel;
 import cn.bmob.newim.BmobIM;
 import cn.bmob.newim.bean.BmobIMConversation;
@@ -149,6 +151,7 @@ public class UserInfoActivity extends ParentWithNaviActivity {
                                 public void done(BmobException e) {
                                     if(e==null){
                                         tv_name.setText(et.getText().toString().trim());
+                                        EventBus.getDefault().post(new RetUsernameEvent());
                                     }else{
                                         toast("修改失败:" + e.getMessage());
                                     }

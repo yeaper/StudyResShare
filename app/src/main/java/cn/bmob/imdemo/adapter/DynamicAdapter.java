@@ -18,6 +18,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import cn.bmob.imdemo.R;
+import cn.bmob.imdemo.bean.User;
 import cn.bmob.imdemo.model.CampusDynamic;
 import cn.bmob.imdemo.model.ResFile;
 import cn.bmob.imdemo.model.UserModel;
@@ -25,6 +26,7 @@ import cn.bmob.imdemo.model.global.C;
 import cn.bmob.imdemo.model.i.DownloadResFileListener;
 import cn.bmob.imdemo.model.i.OnDynamicCommentListener;
 import cn.bmob.imdemo.model.i.OnDynamicDeleteListener;
+import cn.bmob.imdemo.model.i.QueryUserListener;
 import cn.bmob.imdemo.ui.ChatActivity;
 import cn.bmob.imdemo.ui.CommentActivity;
 import cn.bmob.imdemo.util.FileUtil;
@@ -116,7 +118,17 @@ public class DynamicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }else{
                 delete.setVisibility(View.GONE);
             }
-            name.setText(dynamic.getAuthorName());
+            // 获取动态作者名
+            UserModel.getInstance().queryUserInfo(dynamic.getAuthorId(), new QueryUserListener() {
+                @Override
+                public void done(User s, BmobException e) {
+                    if(e == null){
+                        name.setText(s.getUsername());
+                    }else{
+                        name.setText(dynamic.getAuthorName());
+                    }
+                }
+            });
             time.setText(dynamic.getCreatedAt());
             content.setText(dynamic.getContent());
             comment.setOnClickListener(new View.OnClickListener() {
@@ -149,7 +161,7 @@ public class DynamicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 comment_ll.setVisibility(View.GONE);
             }else {
                 comment_ll.setVisibility(View.VISIBLE);
-                if(dynamic.getCommentList().size()>5){
+                if(dynamic.getCommentList().size()>5){ //超过5条显示更多评论
                     more_comment.setVisibility(View.VISIBLE);
                 }else{
                     more_comment.setVisibility(View.GONE);

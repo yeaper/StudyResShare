@@ -36,6 +36,7 @@ import cn.bmob.imdemo.bean.Friend;
 import cn.bmob.imdemo.bean.User;
 import cn.bmob.imdemo.event.DeleteDynamicEvent;
 import cn.bmob.imdemo.event.PublishDynamicEvent;
+import cn.bmob.imdemo.event.RetUsernameEvent;
 import cn.bmob.imdemo.model.CampusDynamic;
 import cn.bmob.imdemo.model.DynamicComment;
 import cn.bmob.imdemo.model.ResFile;
@@ -231,6 +232,11 @@ public class DynamicFragment extends ParentWithNaviFragment implements OnDynamic
 
     @Subscribe
     public void onEventMainThread(DeleteDynamicEvent event){
+        getDynamic();
+    }
+
+    @Subscribe
+    public void onEventMainThread(RetUsernameEvent event){
         getDynamic();
     }
 

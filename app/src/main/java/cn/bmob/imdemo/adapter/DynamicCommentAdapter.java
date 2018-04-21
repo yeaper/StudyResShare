@@ -14,13 +14,16 @@ import java.util.List;
 
 import butterknife.Bind;
 import cn.bmob.imdemo.R;
+import cn.bmob.imdemo.bean.User;
 import cn.bmob.imdemo.model.CampusDynamic;
 import cn.bmob.imdemo.model.DynamicComment;
 import cn.bmob.imdemo.model.UserModel;
+import cn.bmob.imdemo.model.i.QueryUserListener;
 import cn.bmob.imdemo.ui.ChatActivity;
 import cn.bmob.newim.BmobIM;
 import cn.bmob.newim.bean.BmobIMConversation;
 import cn.bmob.newim.bean.BmobIMUserInfo;
+import cn.bmob.v3.exception.BmobException;
 
 
 /**
@@ -78,7 +81,17 @@ public class DynamicCommentAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         @Override
         public void bindData(final DynamicComment comment) {
-            name.setText(comment.getCommenterName()+"：");
+            // 获取评论作者名
+            UserModel.getInstance().queryUserInfo(comment.getCommenterId(), new QueryUserListener() {
+                @Override
+                public void done(User s, BmobException e) {
+                    if(e == null){
+                        name.setText(s.getUsername()+"：");
+                    }else{
+                        name.setText(comment.getCommenterName()+"：");
+                    }
+                }
+            });
             content.setText(comment.getContent());
         }
     }

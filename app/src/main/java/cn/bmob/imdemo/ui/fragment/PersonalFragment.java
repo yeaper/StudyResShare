@@ -1,6 +1,5 @@
 package cn.bmob.imdemo.ui.fragment;
 
-import android.app.ActivityManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -16,6 +18,7 @@ import cn.bmob.imdemo.BaseApplication;
 import cn.bmob.imdemo.R;
 import cn.bmob.imdemo.base.ParentWithNaviFragment;
 import cn.bmob.imdemo.bean.User;
+import cn.bmob.imdemo.event.RetUsernameEvent;
 import cn.bmob.imdemo.model.UserModel;
 import cn.bmob.imdemo.ui.LoginActivity;
 import cn.bmob.imdemo.ui.MyDynamicActivity;
@@ -53,6 +56,7 @@ public class PersonalFragment extends ParentWithNaviFragment {
         rootView = inflater.inflate(R.layout.fragment_personal, container, false);
         initNaviView();
         ButterKnife.bind(this, rootView);
+        EventBus.getDefault().register(this);
         String username = UserModel.getInstance().getCurrentUser().getUsername();
         tv_set_name.setText(TextUtils.isEmpty(username) ? "" : username);
         return rootView;
@@ -84,5 +88,18 @@ public class PersonalFragment extends ParentWithNaviFragment {
         BaseApplication.clearActivity();
         getActivity().finish();
         startActivity(LoginActivity.class, null);
+    }
+
+    @Subscribe
+    public void onEventMainThread(RetUsernameEvent event){
+        //更新用户名
+        String username = UserModel.getInstance().getCurrentUser().getUsername();
+        tv_set_name.setText(TextUtils.isEmpty(username) ? "" : username);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

@@ -7,29 +7,33 @@
 
     <include layout="@layout/include_navi" />
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/layout_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/btn_selector"
         android:minHeight="50dp"
-        android:padding="10dp" >
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
-        <TextView
-            style="@style/style_text_black"
+        <ImageView
+            android:id="@+id/personal_avatar"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:text="@string/set_myinfo" />
+            android:src="@mipmap/head"
+            android:layout_marginTop="15dp"/>
 
         <TextView
             android:id="@+id/tv_set_name"
             style="@style/style_text_black"
-            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/personal_avatar"
             android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:drawablePadding="10dp"
-            android:drawableRight="@mipmap/register_bottom_arrow" />
-    </RelativeLayout>
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"/>
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
