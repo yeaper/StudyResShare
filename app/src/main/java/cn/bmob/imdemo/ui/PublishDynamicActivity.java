@@ -23,6 +23,7 @@ import cn.bmob.imdemo.event.PublishDynamicEvent;
 import cn.bmob.imdemo.model.CampusDynamic;
 import cn.bmob.imdemo.model.DynamicComment;
 import cn.bmob.imdemo.model.UserModel;
+import cn.bmob.imdemo.util.TimeUtil;
 import cn.bmob.imdemo.util.Util;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
@@ -95,6 +96,7 @@ public class PublishDynamicActivity extends ParentWithNaviActivity{
         dynamic.setAuthorId(UserModel.getInstance().getCurrentUser().getObjectId());
         dynamic.setContent(content);
         dynamic.setAuthorName(UserModel.getInstance().getCurrentUser().getUsername());
+        dynamic.setTime(TimeUtil.getCurrTime(System.currentTimeMillis()));
         dynamic.setCommentList(new ArrayList<DynamicComment>());
         dynamic.save(new SaveListener<String>() {
             @Override

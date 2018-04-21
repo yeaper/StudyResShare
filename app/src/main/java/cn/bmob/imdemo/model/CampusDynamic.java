@@ -12,6 +12,7 @@ public class CampusDynamic extends BmobObject {
     private String authorId; //作者id
     private String authorName; //作者名字
     private String content; //动态内容
+    private String time; //动态时间
     private List<DynamicComment> commentList; //评论列表
 
     public String getAuthorId() {
@@ -36,6 +37,14 @@ public class CampusDynamic extends BmobObject {
 
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public List<DynamicComment> getCommentList() {

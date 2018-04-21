@@ -74,11 +74,11 @@ public class TimeUtil {
     }
 
     /**
-     * 获取当前时间 yyyy-MM-dd HH:mm:ss
+     * 获取当前时间 yyyy-MM-dd HH:mm
      * @return
      */
     public static String getCurrTime(long time){
-        SimpleDateFormat format = new SimpleDateFormat(FORMAT_DATE_TIME_SECOND);
+        SimpleDateFormat format = new SimpleDateFormat(FORMAT_DATE_TIME);
         return format.format(new Date(time));
     }
 

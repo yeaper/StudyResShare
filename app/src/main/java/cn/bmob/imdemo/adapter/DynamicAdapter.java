@@ -129,7 +129,7 @@ public class DynamicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     }
                 }
             });
-            time.setText(dynamic.getCreatedAt());
+            time.setText(dynamic.getTime());
             content.setText(dynamic.getContent());
             comment.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -19,7 +19,7 @@ import cn.bmob.imdemo.base.BaseActivity;
 import cn.bmob.imdemo.bean.User;
 import cn.bmob.imdemo.db.NewFriendManager;
 import cn.bmob.imdemo.event.RefreshEvent;
-import cn.bmob.imdemo.ui.fragment.ContactFragment;
+import cn.bmob.imdemo.ui.fragment.FocusFragment;
 import cn.bmob.imdemo.ui.fragment.ConversationFragment;
 import cn.bmob.imdemo.ui.fragment.DynamicFragment;
 import cn.bmob.imdemo.ui.fragment.PersonalFragment;
@@ -47,22 +47,22 @@ public class MainActivity extends BaseActivity {
     TextView btn_conversation;
     @Bind(R.id.btn_personal)
     TextView btn_personal;
-    @Bind(R.id.btn_contact)
-    TextView btn_contact;
+    @Bind(R.id.btn_focus)
+    TextView btn_focus;
     @Bind(R.id.btn_dynamic)
     TextView btn_dynamic;
 
     @Bind(R.id.iv_conversation_tips)
     ImageView iv_conversation_tips;
-    @Bind(R.id.iv_contact_tips)
-    ImageView iv_contact_tips;
+    @Bind(R.id.iv_focus_tips)
+    ImageView iv_focus_tips;
 
     private TextView[] mTabs;
     private ResFragment resFragment;
     private ConversationFragment conversationFragment;
     private DynamicFragment dynamicFragment;
     private PersonalFragment personalFragment;
-    ContactFragment contactFragment;
+    FocusFragment focusFragment;
     private Fragment[] fragments;
     private int index;
     private int currentTabIndex;
@@ -111,7 +111,7 @@ public class MainActivity extends BaseActivity {
         mTabs = new TextView[5];
         mTabs[0] = btn_res;
         mTabs[1] = btn_conversation;
-        mTabs[2] = btn_contact;
+        mTabs[2] = btn_focus;
         mTabs[3] = btn_dynamic;
         mTabs[4] = btn_personal;
         mTabs[0].setSelected(true);
@@ -122,17 +122,17 @@ public class MainActivity extends BaseActivity {
         resFragment = new ResFragment();
         conversationFragment = new ConversationFragment();
         personalFragment = new PersonalFragment();
-        contactFragment = new ContactFragment();
+        focusFragment = new FocusFragment();
         dynamicFragment = new DynamicFragment();
-        fragments = new Fragment[]{resFragment, conversationFragment, contactFragment, dynamicFragment, personalFragment};
+        fragments = new Fragment[]{resFragment, conversationFragment, focusFragment, dynamicFragment, personalFragment};
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, resFragment)
                 .add(R.id.fragment_container, conversationFragment)
-                .add(R.id.fragment_container, contactFragment)
+                .add(R.id.fragment_container, focusFragment)
                 .add(R.id.fragment_container, dynamicFragment)
                 .add(R.id.fragment_container, personalFragment)
                 .hide(personalFragment)
-                .hide(contactFragment)
+                .hide(focusFragment)
                 .hide(conversationFragment)
                 .hide(dynamicFragment)
                 .show(resFragment).commit();
@@ -146,7 +146,7 @@ public class MainActivity extends BaseActivity {
             case R.id.btn_conversation:
                 index = 1;
                 break;
-            case R.id.btn_contact:
+            case R.id.btn_focus:
                 index = 2;
                 break;
             case R.id.btn_dynamic:
@@ -237,9 +237,9 @@ public class MainActivity extends BaseActivity {
         }
         //TODO 好友管理：是否有好友添加的请求
         if (NewFriendManager.getInstance(this).hasNewFriendInvitation()) {
-            iv_contact_tips.setVisibility(View.VISIBLE);
+            iv_focus_tips.setVisibility(View.VISIBLE);
         } else {
-            iv_contact_tips.setVisibility(View.GONE);
+            iv_focus_tips.setVisibility(View.GONE);
         }
     }
 
