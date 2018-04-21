@@ -38,3 +38,5 @@
 # 不混淆async
 -dontwarn com.koushikdutta.async.**
 -keep class com.koushikdutta.async.** { *;}
+
+-ignorewarnings -keep class * { public private *; }
