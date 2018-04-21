@@ -1,5 +1,8 @@
 package cn.bmob.imdemo.ui;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -26,7 +29,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.orhanobut.logger.Logger;
+import com.yuyh.library.imgsel.ISNav;
+import com.yuyh.library.imgsel.config.ISListConfig;
 
 import java.util.HashMap;
 import java.util.List;
@@ -424,7 +430,38 @@ public class ChatActivity extends ParentWithNaviActivity implements MessageListH
             toast("尚未连接IM服务器");
             return;
         }
-        sendRemoteImageMessage();
+
+        // 配置图片选择器
+        ISListConfig config = new ISListConfig.Builder()
+                // 是否多选, 默认true
+                .multiSelect(false)
+                // 是否记住上次选中记录, 仅当multiSelect为true的时候配置，默认为true
+                .rememberSelected(false)
+                // “确定”按钮背景色
+                .btnBgColor(Color.GRAY)
+                // “确定”按钮文字颜色
+                .btnTextColor(Color.BLUE)
+                // 使用沉浸式状态栏
+                .statusBarColor(getResources().getColor(R.color.colorPrimaryDark))
+                // 返回图标ResId
+                .backResId(R.mipmap.base_action_bar_back_bg_n)
+                // 标题
+                .title("选择图片")
+                // 标题文字颜色
+                .titleColor(Color.WHITE)
+                // TitleBar背景色
+                .titleBgColor(getResources().getColor(R.color.colorPrimary))
+                // 裁剪大小。needCrop为true的时候配置
+                .cropSize(1, 1, 200, 200)
+                .needCrop(true)
+                // 第一个是否显示相机，默认true
+                .needCamera(true)
+                // 最大选择图片数量，默认9
+                .maxNum(1)
+                .build();
+
+        // 跳转到图片选择器
+        ISNav.getInstance().toListActivity(this, config, 0x11);
     }
 
     @OnClick(R.id.tv_camera)
@@ -443,6 +480,18 @@ public class ChatActivity extends ParentWithNaviActivity implements MessageListH
             return;
         }
         sendLocationMessage();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // 图片选择结果回调
+        if (requestCode == 0x11 && resultCode == RESULT_OK && data != null) {
+            List<String> pathList = data.getStringArrayListExtra("result");
+            for (String path : pathList) {
+                sendLocalImageMessage(path);
+            }
+        }
     }
 
     /**
@@ -503,10 +552,9 @@ public class ChatActivity extends ParentWithNaviActivity implements MessageListH
     /**
      * 发送本地图片文件
      */
-    public void sendLocalImageMessage() {
+    public void sendLocalImageMessage(String path) {
         //TODO 发送消息：6.2、发送本地图片消息
-        //正常情况下，需要调用系统的图库或拍照功能获取到图片的本地地址，开发者只需要将本地的文件地址传过去就可以发送文件类型的消息
-        BmobIMImageMessage image = new BmobIMImageMessage("/storage/emulated/0/netease/cloudmusic/网易云音乐相册/小梦大半_1371091013186741.jpg");
+        BmobIMImageMessage image = new BmobIMImageMessage(path);
         mConversationManager.sendMessage(image, listener);
     }
 

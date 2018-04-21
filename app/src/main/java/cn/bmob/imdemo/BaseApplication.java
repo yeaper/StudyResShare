@@ -2,8 +2,12 @@ package cn.bmob.imdemo;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
+import android.widget.ImageView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.orhanobut.logger.Logger;
+import com.yuyh.library.imgsel.ISNav;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -57,6 +61,13 @@ public class BaseApplication extends Application {
         }
         Logger.init("Demo");
         UniversalImageLoader.initImageLoader(this);
+        // 自定义图片加载器
+        ISNav.getInstance().init(new com.yuyh.library.imgsel.common.ImageLoader() {
+            @Override
+            public void displayImage(Context context, String path, ImageView imageView) {
+                ImageLoader.getInstance().displayImage("file://" + path, imageView);
+            }
+        });
     }
 
     /**

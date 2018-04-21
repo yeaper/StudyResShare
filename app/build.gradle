@@ -68,4 +68,5 @@ dependencies {
     compile 'com.github.promeg:tinypinyin:1.0.0'
     compile 'com.leon:lfilepickerlibrary:1.7.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.yuyh.imgsel:library:2.0.2'
 }
