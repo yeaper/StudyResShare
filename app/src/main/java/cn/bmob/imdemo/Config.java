@@ -1,9 +1,7 @@
 package cn.bmob.imdemo;
 
 /**
- * @author :smile
- * @project:Config
- * @date :2016-01-15-18:23
+ *
  */
 public class Config {
     //是否是debug模式

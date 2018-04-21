@@ -3,7 +3,7 @@ package cn.bmob.imdemo.adapter.base;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/5/6.
+ *
  */
 public interface IMutlipleItem<T> {
 
