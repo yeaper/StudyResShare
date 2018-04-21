@@ -3,6 +3,7 @@ package cn.bmob.imdemo.adapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -10,7 +11,12 @@ import java.util.List;
 
 import butterknife.Bind;
 import cn.bmob.imdemo.R;
+import cn.bmob.imdemo.base.ImageLoaderFactory;
+import cn.bmob.imdemo.bean.User;
 import cn.bmob.imdemo.model.DynamicComment;
+import cn.bmob.imdemo.model.UserModel;
+import cn.bmob.imdemo.model.i.QueryUserListener;
+import cn.bmob.v3.exception.BmobException;
 
 
 /**
@@ -50,6 +56,8 @@ public class CommentListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public class MyHolder extends BaseViewHolder<DynamicComment>{
 
+        @Bind(R.id.comment_avatar)
+        ImageView avatar;
         @Bind(R.id.comment_name)
         TextView name;
         @Bind(R.id.comment_time)
@@ -63,6 +71,15 @@ public class CommentListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         @Override
         public void bindData(final DynamicComment comment) {
+            // 获取头像
+            UserModel.getInstance().queryUserInfo(comment.getCommenterId(), new QueryUserListener() {
+                @Override
+                public void done(User s, BmobException e) {
+                    if(e == null){
+                        ImageLoaderFactory.getLoader().loadAvator(avatar, s.getAvatar(), R.mipmap.head);
+                    }
+                }
+            });
             name.setText(comment.getCommenterName());
             time.setText(comment.getTime());
             content.setText(comment.getContent());

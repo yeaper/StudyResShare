@@ -1,7 +1,10 @@
 package cn.bmob.imdemo.ui;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +12,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.yuyh.library.imgsel.ISNav;
+import com.yuyh.library.imgsel.config.ISListConfig;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -25,8 +32,11 @@ import cn.bmob.imdemo.base.ParentWithNaviActivity;
 import cn.bmob.imdemo.bean.AddFriendMessage;
 import cn.bmob.imdemo.bean.Friend;
 import cn.bmob.imdemo.bean.User;
+import cn.bmob.imdemo.event.AvatarUpdateEvent;
 import cn.bmob.imdemo.event.RetUsernameEvent;
 import cn.bmob.imdemo.model.UserModel;
+import cn.bmob.imdemo.model.i.UploadResFileListener;
+import cn.bmob.imdemo.util.FileUtil;
 import cn.bmob.newim.BmobIM;
 import cn.bmob.newim.bean.BmobIMConversation;
 import cn.bmob.newim.bean.BmobIMMessage;
@@ -55,6 +65,7 @@ public class UserInfoActivity extends ParentWithNaviActivity {
     @Bind(R.id.btn_chat)
     Button btn_chat;
 
+    ProgressDialog progressDialog;
 
     //用户
     User user;
@@ -115,9 +126,12 @@ public class UserInfoActivity extends ParentWithNaviActivity {
     }
 
 
-    @OnClick({R.id.layout_name,R.id.layout_reset_pwd,R.id.btn_add_friend, R.id.btn_chat})
+    @OnClick({R.id.iv_avatar,R.id.layout_name,R.id.layout_reset_pwd,R.id.btn_add_friend, R.id.btn_chat})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.iv_avatar:
+                selectAvatar();
+                break;
             case R.id.layout_name:
                 retName();
                 break;
@@ -130,6 +144,103 @@ public class UserInfoActivity extends ParentWithNaviActivity {
             case R.id.btn_chat:
                 chat();
                 break;
+        }
+    }
+
+    /**
+     * 选择头像
+     */
+    public void selectAvatar(){
+        // 配置图片选择器
+        ISListConfig config = new ISListConfig.Builder()
+                // 是否多选, 默认true
+                .multiSelect(false)
+                // 是否记住上次选中记录, 仅当multiSelect为true的时候配置，默认为true
+                .rememberSelected(false)
+                // “确定”按钮背景色
+                .btnBgColor(Color.GRAY)
+                // “确定”按钮文字颜色
+                .btnTextColor(Color.BLUE)
+                // 使用沉浸式状态栏
+                .statusBarColor(getResources().getColor(R.color.colorPrimaryDark))
+                // 返回图标ResId
+                .backResId(R.mipmap.base_action_bar_back_bg_n)
+                // 标题
+                .title("选择头像")
+                // 标题文字颜色
+                .titleColor(Color.WHITE)
+                // TitleBar背景色
+                .titleBgColor(getResources().getColor(R.color.colorPrimary))
+                // 裁剪大小。needCrop为true的时候配置
+                .cropSize(1, 1, 200, 200)
+                .needCrop(true)
+                // 第一个是否显示相机，默认true
+                .needCamera(true)
+                // 最大选择图片数量，默认9
+                .maxNum(1)
+                .build();
+
+        // 跳转到图片选择器
+        ISNav.getInstance().toListActivity(this, config, 0x11);
+    }
+
+    /**
+     * 上传头像
+     */
+    private void uploadAvatar(String path){
+        showPD();
+        FileUtil.uploadFile(path, new UploadResFileListener() {
+            @Override
+            public void uploading(int progress) {
+            }
+
+            @Override
+            public void uploadSuccess(String fileName, final String fileUrl) {
+                User newUser = new User();
+                newUser.setAvatar(fileUrl);
+                BmobUser bmobUser = UserModel.getInstance().getCurrentUser();
+                newUser.update(bmobUser.getObjectId(),new UpdateListener() {
+                    @Override
+                    public void done(BmobException e) {
+                        progressDialog.dismiss();
+                        if(e==null){
+                            showToast("头像修改成功");
+                            // 本地更新头像
+                            ImageLoaderFactory.getLoader().loadAvator(iv_avatar, fileUrl, R.mipmap.head);
+                            EventBus.getDefault().post(new AvatarUpdateEvent(fileUrl));
+                        }else{
+                            showToast("头像修改失败："+ e.getMessage());
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void uploadError(String errorMsg) {
+                progressDialog.dismiss();
+                showToast("头像修改失败："+ errorMsg);
+            }
+        });
+    }
+
+    private void showPD() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);//转盘
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setMessage("正在上传，请稍后……");
+        progressDialog.show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // 图片选择结果回调
+        if (requestCode == 0x11 && resultCode == RESULT_OK && data != null) {
+            List<String> pathList = data.getStringArrayListExtra("result");
+            for (String path : pathList) {
+                uploadAvatar(path);
+            }
         }
     }
 

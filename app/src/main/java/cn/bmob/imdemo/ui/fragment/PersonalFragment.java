@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -16,8 +17,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.bmob.imdemo.BaseApplication;
 import cn.bmob.imdemo.R;
+import cn.bmob.imdemo.base.ImageLoaderFactory;
 import cn.bmob.imdemo.base.ParentWithNaviFragment;
 import cn.bmob.imdemo.bean.User;
+import cn.bmob.imdemo.event.AvatarUpdateEvent;
 import cn.bmob.imdemo.event.RetUsernameEvent;
 import cn.bmob.imdemo.model.UserModel;
 import cn.bmob.imdemo.ui.LoginActivity;
@@ -32,6 +35,8 @@ import cn.bmob.v3.BmobUser;
  */
 public class PersonalFragment extends ParentWithNaviFragment {
 
+    @Bind(R.id.personal_avatar)
+    ImageView avatar;
     @Bind(R.id.tv_set_name)
     TextView tv_set_name;
 
@@ -57,7 +62,9 @@ public class PersonalFragment extends ParentWithNaviFragment {
         initNaviView();
         ButterKnife.bind(this, rootView);
         EventBus.getDefault().register(this);
-        String username = UserModel.getInstance().getCurrentUser().getUsername();
+        User user = UserModel.getInstance().getCurrentUser();
+        ImageLoaderFactory.getLoader().loadAvator(avatar, user.getAvatar(), R.mipmap.head);
+        String username = user.getUsername();
         tv_set_name.setText(TextUtils.isEmpty(username) ? "" : username);
         return rootView;
     }
@@ -95,6 +102,12 @@ public class PersonalFragment extends ParentWithNaviFragment {
         //更新用户名
         String username = UserModel.getInstance().getCurrentUser().getUsername();
         tv_set_name.setText(TextUtils.isEmpty(username) ? "" : username);
+    }
+
+    @Subscribe
+    public void onEventMainThread(AvatarUpdateEvent event){
+        //更新头像
+        ImageLoaderFactory.getLoader().loadAvator(avatar, event.getAvatarUrl(), R.mipmap.head);
     }
 
     @Override

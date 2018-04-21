@@ -31,9 +31,11 @@ import butterknife.OnClick;
 import cn.bmob.imdemo.R;
 import cn.bmob.imdemo.adapter.DynamicAdapter;
 import cn.bmob.imdemo.adapter.SearchResFileAdapter;
+import cn.bmob.imdemo.base.ImageLoaderFactory;
 import cn.bmob.imdemo.base.ParentWithNaviFragment;
 import cn.bmob.imdemo.bean.Friend;
 import cn.bmob.imdemo.bean.User;
+import cn.bmob.imdemo.event.AvatarUpdateEvent;
 import cn.bmob.imdemo.event.DeleteDynamicEvent;
 import cn.bmob.imdemo.event.PublishDynamicEvent;
 import cn.bmob.imdemo.event.RetUsernameEvent;
@@ -237,6 +239,12 @@ public class DynamicFragment extends ParentWithNaviFragment implements OnDynamic
 
     @Subscribe
     public void onEventMainThread(RetUsernameEvent event){
+        getDynamic();
+    }
+
+    @Subscribe
+    public void onEventMainThread(AvatarUpdateEvent event){
+        //更新头像
         getDynamic();
     }
 

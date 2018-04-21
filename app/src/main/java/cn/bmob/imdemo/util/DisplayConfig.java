@@ -1,9 +1,11 @@
 package cn.bmob.imdemo.util;
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.display.CircleBitmapDisplayer;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 /**
@@ -15,7 +17,7 @@ public class DisplayConfig {
      * @param defaultRes
      * @return
      */
-    public static DisplayImageOptions getDefaultOptions(boolean hasRounded,int defaultRes){
+    public static DisplayImageOptions getDefaultOptions(boolean isCircle,int defaultRes){
         DisplayImageOptions.Builder builder = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)//设置下载的图片是否缓存在内存中
                 .cacheOnDisc(true)//设置下载的图片是否缓存在SD卡中
@@ -24,8 +26,8 @@ public class DisplayConfig {
                 .bitmapConfig(Bitmap.Config.RGB_565)//设置图片的解码类型:设置为RGB565比起默认的ARGB_8888要节省大量的内存
 //                .delayBeforeLoading(100)//载入图片前稍做延时可以提高整体滑动的流畅度
                 .resetViewBeforeLoading(true);//设置图片在下载前是否重置，复位
-                if(hasRounded){
-                    builder.displayer(new RoundedBitmapDisplayer(12));//是否设置为圆角，弧度为多少
+                if(isCircle){
+                    builder.displayer(new CircleBitmapDisplayer(Color.WHITE, 1));//是否设置为圆型，边框颜色、宽度
                 }
                 if(defaultRes!=0){
                     builder.showImageForEmptyUri(defaultRes)//设置图片Uri为空或是错误的时候显示的图片

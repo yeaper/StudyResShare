@@ -18,6 +18,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import cn.bmob.imdemo.R;
+import cn.bmob.imdemo.base.ImageLoaderFactory;
 import cn.bmob.imdemo.bean.User;
 import cn.bmob.imdemo.model.CampusDynamic;
 import cn.bmob.imdemo.model.ResFile;
@@ -118,11 +119,12 @@ public class DynamicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }else{
                 delete.setVisibility(View.GONE);
             }
-            // 获取动态作者名
+            // 获取动态作者名、头像
             UserModel.getInstance().queryUserInfo(dynamic.getAuthorId(), new QueryUserListener() {
                 @Override
                 public void done(User s, BmobException e) {
                     if(e == null){
+                        ImageLoaderFactory.getLoader().loadAvator(avatar, s.getAvatar(), R.mipmap.head);
                         name.setText(s.getUsername());
                     }else{
                         name.setText(dynamic.getAuthorName());
